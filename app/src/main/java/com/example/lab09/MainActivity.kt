@@ -33,8 +33,7 @@ import androidx.navigation.navArgument
 import com.example.lab09.ui.theme.Lab09Theme
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import androidx.compose.material.icons.outlined.Home
-import androidx.compose.material.icons.outlined.Favorite
+
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -136,14 +135,4 @@ fun Contenido(
 @Composable
 fun ScreenInicio() {
     Text("INICIO")
-}
-
-@Composable
-fun ScreenPosts(navController: NavHostController, servicio: PostApiService) {
-    Text("Lista de Posts")
-}
-
-@Composable
-fun ScreenPost(navController: NavHostController, servicio: PostApiService, id: Int) {
-    Text("Detalle del Post $id")
 }
