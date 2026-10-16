@@ -9,5 +9,8 @@ interface PostApiService {
 
     @GET("posts/{id}")
     suspend fun getUserPostById(@Path("id") id: Int): PostModel
+
+    @GET("photos")
+    suspend fun getPhotos(): List<PhotoModel>
 }
 

@@ -11,3 +11,10 @@ data class PostModel(
     @SerializedName("comment_count") val commentCount: Int?
 )
 
+data class PhotoModel(
+    val albumId: Int,
+    val id: Int,
+    val title: String,
+    val url: String,
+    val thumbnailUrl: String
+)

@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -22,7 +23,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshots.SnapshotStateList
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
@@ -102,6 +105,37 @@ fun ScreenPost(navController: NavHostController, servicio: PostApiService, id: I
                 label = { Text("body") },
                 readOnly = true
             )
+        }
+    }
+}
+
+@Composable
+fun ScreenPhotos(servicio: PostApiService) {
+    val listaPhotos = remember { mutableStateListOf<PhotoModel>() }
+
+    LaunchedEffect(Unit) {
+        val listado = servicio.getPhotos()
+        listado.take(20).forEach { listaPhotos.add(it) }
+    }
+
+    LazyColumn(modifier = Modifier.fillMaxSize()) {
+        items(listaPhotos) { item ->
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(8.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = item.id.toString(),
+                    modifier = Modifier.padding(end = 8.dp),
+                    fontWeight = FontWeight.Bold
+                )
+                Text(
+                    text = item.title,
+                    modifier = Modifier.weight(1f)
+                )
+            }
         }
     }
 }

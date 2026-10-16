@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Favorite
 import androidx.compose.material.icons.outlined.Home
+import androidx.compose.material.icons.outlined.Notifications
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -100,6 +101,12 @@ fun BarraInferior(navController: NavHostController) {
             selected = navController.currentDestination?.route == "posts",
             onClick = { navController.navigate("posts") }
         )
+        NavigationBarItem(
+            icon = { Icon(Icons.Outlined.Notifications, contentDescription = "Photos") },
+            label = { Text("Photos") },
+            selected = navController.currentDestination?.route == "photos",
+            onClick = { navController.navigate("photos") }
+        )
     }
 }
 
@@ -121,6 +128,8 @@ fun Contenido(
             composable("inicio") { ScreenInicio() }
 
             composable("posts") { ScreenPosts(navController, servicio) }
+
+            composable("photos") { ScreenPhotos(servicio) }
 
             composable(
                 "postsVer/{id}",
